@@ -46,3 +46,30 @@ Tạo file `.env` trong thư mục backend (xem `.env.example`) với PORT và M
 
 Tạo file `.env` trong thư mục frontend (xem `.env.example`) với VITE\_API\_URL.
 
+## Chạy backend bằng Docker
+
+Docker image backend: https://hub.docker.com/r/phuvanhiep236390/backend
+
+Build image:
+
+```
+cd backend
+docker build -t phuvanhiep236390/backend:latest .
+```
+
+Chạy container (truyền biến môi trường từ file .env, không nhúng vào image):
+
+```
+docker run -d --name backend -p 5000:5000 --env-file .env phuvanhiep236390/backend:latest
+```
+
+Các biến môi trường cần có: `PORT` và `MONGODB_URI` (xem `backend/.env.example`).
+
+Kiểm tra: http://localhost:5000/health
+
+Lấy image từ Docker Hub:
+
+```
+docker pull phuvanhiep236390/backend:latest
+```
+
