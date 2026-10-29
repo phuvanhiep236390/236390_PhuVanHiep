@@ -72,4 +72,27 @@ Lấy image từ Docker Hub:
 ```
 docker pull phuvanhiep236390/backend:latest
 ```
+## Chạy frontend bằng Docker
 
+Docker image frontend: https://hub.docker.com/r/phuvanhiep236390/frontend
+
+Build image (địa chỉ backend được nhúng lúc build qua VITE_API_URL):
+
+```
+cd frontend
+docker build --build-arg VITE_API_URL=http://localhost:5000 -t phuvanhiep236390/frontend:latest .
+```
+
+Chạy container:
+
+```
+docker run -d --name frontend -p 8080:80 phuvanhiep236390/frontend:latest
+```
+
+Truy cập: http://localhost:8080 (cần backend đang chạy ở địa chỉ đã cấu hình).
+
+Lấy image từ Docker Hub:
+
+```
+docker pull phuvanhiep236390/frontend:latest
+```
